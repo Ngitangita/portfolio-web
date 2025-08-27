@@ -36,7 +36,8 @@ const Contact = () => {
       setErreur("Le message est requis !");
     } else {
       try {
-        const res = await axios.post("http://localhost:5000/send", {
+        const url = import.meta.env.VITE_BASE_URL + "/send "
+        const res = await axios.post(url, {
           nom,
           telephone,
           email,
