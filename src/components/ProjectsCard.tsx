@@ -7,7 +7,7 @@ interface Props {
   src: string;
 }
 
-const ProjectsCard = ({ title, des, src }: Props) => {
+const ProjectsCard = ({ title, des, src, link}: Props) => {
   return (
     <div className="w-full p-4 xl:px-12 h-auto xl:py-10 rounded-lg shadow-shadowOne flex flex-col bg-gradient-to-r from-bodyColor to-[#202327] group hover:bg-gradient-to-b hover:from-gray-900 hover:gray-900 transition-colors duration-1000">
       <div className="w-full h-[80%] overflow-hidden rounded-lg">
@@ -32,7 +32,17 @@ const ProjectsCard = ({ title, des, src }: Props) => {
             </div>
           </div>
           <p className="text-sm tracking-wide mt-3 hover:text-gray-100 duration-300">
-            {des}
+            {des}{" "}
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-400 hover:underline"
+          >
+            Voir plus
+          </a>
+        )}
           </p>
         </div>
       </div>

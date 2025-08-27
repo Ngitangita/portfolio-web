@@ -1,6 +1,6 @@
 import Title from "./Title";
 import ProjectsCard from "./ProjectsCard";
-import { projectOne, projectTwo, projectThree } from "../assets";
+import { projectOne, projectTwo, projectThree, ViveticGroup } from "../assets";
 import { FadeIn } from "./FadeIn";
 
 const Projects = () => {
@@ -25,13 +25,14 @@ const Projects = () => {
           />
           <ProjectsCard
             title="Stage découverte - Pulse (Septembre 2023)"
-            des="Immersion professionnelle pour découvrir le fonctionnement d’une entreprise tech."
+            des="Immersion professionnelle pour découvrir le fonctionnement d'une entreprise tech."
             src={projectTwo}
           />
           <ProjectsCard
             title="Stage découverte - Vivetic Groupe (Septembre 2022)"
             des="Découverte des étapes de facturation, du reporting, ainsi que du travail en équipe et des méthodes d’organisation."
             src={projectThree}
+            link="/Vivetic-Group-Rapport-de-stage-Elisé-RAKOTONDRARIVO.pdf"
           />
         </div>
       </FadeIn>

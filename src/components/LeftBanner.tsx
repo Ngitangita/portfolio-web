@@ -1,5 +1,11 @@
 import { useTypewriter, Cursor } from "react-simple-typewriter";
-import { FaFacebookF, FaYoutube, FaLinkedinIn, FaReact } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaYoutube,
+  FaLinkedinIn,
+  FaReact,
+  FaDownload,
+} from "react-icons/fa";
 import { SiTailwindcss, SiFigma, SiNextdotjs } from "react-icons/si";
 import { FadeIn } from "./FadeIn";
 
@@ -51,6 +57,19 @@ const LeftBanner = () => {
             >
               <span className="bannerIcon">
                 <FaFacebookF />
+              </span>
+            </a>
+            <a
+              href="/CV-AKOTONDRARIVO-Florentino-Elisé.pdf"
+              download="CV-AKOTONDRARIVO-Florentino-Elisé.pdf"
+              className="relative group inline-block"
+            >
+              <span className="bannerIcon">
+                <FaDownload />
+              </span>
+              <span className="absolute top-16 -translate-x-1/2 px-2 py-1 text-sm text-white 
+              bg-black/25 hover:text-designColor rounded opacity-0 group-hover:opacity-100 transition-opacity">
+                Télécharger CV
               </span>
             </a>
           </div>
