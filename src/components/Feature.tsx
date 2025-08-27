@@ -13,7 +13,7 @@ const Feature = () => {
     >
       <FadeIn>
         <Title title="Compétences" des="Ce que je fais" />
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:gap-20 justify-center pr-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 xl:gap-16 justify-center pr-10">
           <Card
             title="Conception Web & Développement Frontend"
             des="Je crée des interfaces web modernes et réactives en utilisant HTML5, CSS3, 
