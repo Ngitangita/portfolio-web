@@ -1,8 +1,8 @@
 import { useState } from "react";
-import axios from "axios";
 import ContactLeft from "./ContactLeft";
 import Title from "./Title";
 import { FadeIn } from "./FadeIn";
+import emailjs from "emailjs-com";
 
 const Contact = () => {
   const [nom, setNom] = useState("");
@@ -14,51 +14,56 @@ const Contact = () => {
   const [succes, setSucces] = useState("");
 
   const validationEmail = (email: string) => {
-    return String(email)
-      .toLowerCase()
-      .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
-  };
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.toLowerCase());
+};
+
 
   const envoyerMessage = async (e: any) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (nom === "") {
-      setErreur("Le nom est requis !");
-    } else if (telephone === "") {
-      setErreur("Le numéro de téléphone est requis !");
-    } else if (email === "") {
-      setErreur("Veuillez fournir votre email !");
-    } else if (!validationEmail(email)) {
-      setErreur("Veuillez fournir un email valide !");
-    } else if (sujet === "") {
-      setErreur("Veuillez indiquer le sujet !");
-    } else if (message === "") {
-      setErreur("Le message est requis !");
-    } else {
-      try {
-        const url = import.meta.env.VITE_BASE_URL + "/send "
-        const res = await axios.post(url, {
-          nom,
+  if (nom === "") {
+    setErreur("Le nom est requis !");
+  } else if (telephone === "") {
+    setErreur("Le numéro de téléphone est requis !");
+  } else if (email === "") {
+    setErreur("Veuillez fournir votre email !");
+  } else if (!validationEmail(email)) {
+    setErreur("Veuillez fournir un email valide !");
+  } else if (sujet === "") {
+    setErreur("Veuillez indiquer le sujet !");
+  } else if (message === "") {
+    setErreur("Le message est requis !");
+  } else {
+    try {
+      const result = await emailjs.send(
+        import.meta.env.VITE_SERVICE_ID,        
+        import.meta.env.VITE_TEMPLATE_ID,      
+        {
+          name: nom,  
           telephone,
           email,
-          sujet,
+          title: sujet, 
           message,
-        });
+          time: new Date().toLocaleString(),
+        },
+        import.meta.env.VITE_PUBLIC_KEY       
+      );
 
-        if (res.data.success) {
-          setSucces(`Merci ${nom}, votre message a été envoyé avec succès !`);
-          setErreur("");
-          setNom("");
-          setTelephone("");
-          setEmail("");
-          setSujet("");
-          setMessage("");
-        }
-      } catch (err) {
-        setErreur("Erreur lors de l'envoi de l'email.");
+      if (result.status === 200) {
+        setSucces(`Merci ${nom}, votre message a été envoyé avec succès !`);
+        setErreur("");
+        setNom("");
+        setTelephone("");
+        setEmail("");
+        setSujet("");
+        setMessage("");
       }
+    } catch (err) {
+      console.error(err);
+      setErreur("Erreur lors de l'envoi de l'email.");
     }
-  };
+  }
+};
 
   return (
     <section
